@@ -1,0 +1,10 @@
+/**
+ * Media Queries
+ * Just make your life easier and write less
+ */
+
+@mixin media($breakpoint) {
+	@media (min-width: #{$breakpoint}px) {
+		@content;
+	}
+}

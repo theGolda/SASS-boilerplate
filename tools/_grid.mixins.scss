@@ -1,0 +1,22 @@
+/**
+ * Create grid classes for any column number grid
+ */
+
+@mixin singleBreakpointGrid($breakpoint, $column-number) {
+	$span: $column-number;
+	@while $column-number > 0 {
+		.col-#{$breakpoint}-#{$column-number} {
+			width: calc(100% * (#{$column-number}/#{$span}));
+			float: left;
+		}
+		$column-number: $column-number - 1;
+	}
+}
+
+@mixin completeGrid($breakpointList, $column-number) {
+  @each $breakpoint in $breakpointList { 
+    @include media($breakpoint) {
+      @include singleBreakpointGrid($breakpoint, $column-number);
+    }
+  }
+}
