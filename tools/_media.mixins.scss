@@ -4,7 +4,8 @@
  */
 
 @mixin media($breakpoint) {
-	@media (min-width: #{$breakpoint}px) {
+	//translate pixels to ems
+	@media (min-width: #{$breakpoint / 16}em) {
 		@content;
 	}
 }

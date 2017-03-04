@@ -4,18 +4,58 @@
 
 @mixin singleBreakpointGrid($breakpoint, $column-number) {
 	$span: $column-number;
-	@while $column-number > 0 {
-		.col-#{$breakpoint}-#{$column-number} {
-			width: calc(100% * (#{$column-number}/#{$span}));
-			float: left;
+	
+	//horizontal alignment
+	.center-#{$breakpoint} {
+		justify-content: center;
+	}
+	
+	//vertical alignment
+	.middle-#{$breakpoint} {
+		align-items: center;
+	}
+	
+	//vertical equal distribution
+	.around-#{$breakpoint} {
+		justify-content: space-around;
+	}
+	
+	//vertical to edge distribution
+	.between-#{$breakpoint} {
+		justify-content: space-between;
+	}
+
+	@while $span > 0 {
+		.col-#{$breakpoint}-#{$span} {
+			flex-basis: 100% * $span / $column-number;
 		}
-		$column-number: $column-number - 1;
+		$span: $span - 1;
 	}
 }
 
 @mixin completeGrid($breakpointList, $column-number) {
+
+	.row {
+		display: flex;
+		flex: 0 1 auto;
+		flex-flow: row wrap;
+		margin-right: $space / 2;
+		margin-left: $space / 2;
+	}
+
+	.container {
+		width: 100%;
+		padding-left: $space / 2;
+		padding-right: $space / 2;
+	}
+
+	@include singleBreakpointGrid(0, $column-number);
+
   @each $breakpoint in $breakpointList { 
     @include media($breakpoint) {
+    	.container {
+    		width: #{$breakpoint / 16}em;
+    	}
       @include singleBreakpointGrid($breakpoint, $column-number);
     }
   }

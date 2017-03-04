@@ -2,3 +2,16 @@
  * Normalizers
  * Ground-zero styles like normalize.css, resets, box-sizing
  */
+
+ html {
+ 	font-family: sans-serif;
+ 	line-height: 1.15;
+ }
+
+ body {
+ 	margin: 0;
+ }
+
+ * {
+ 	box-sizing: border-box;
+ }
